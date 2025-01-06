@@ -129,3 +129,41 @@ function merge(input1, input2) {
 }
 
 console.info(merge([8, 15], [3, 4, 6, 13, 19]));
+
+function getCharIndex(input, start, target) {
+    input = input.split("");
+
+    for (let i = start, len = input.length; i < len; i++) {
+        if (input[i] == target) {
+            return i;
+        }
+    }
+
+    return false;
+}
+
+function findLongWord(input, target) {
+    let res = [];
+
+    for (let i = 0, len = target.length; i < len; i++) {
+        let source = target[i].split("");
+
+        let includeChar = true;
+
+        for (let j = 0, index = 0, len2 = source.length; j < len2; j++, index++) {
+            index = getCharIndex(input, index, source[j]);
+
+            if (index === false) {
+                includeChar = false;
+            }
+        }
+
+        if (includeChar) {
+            res[source.length] = source.join("");
+        }
+    }
+
+    return res.length > 0 ? res.pop() : null;
+}
+
+console.info(findLongWord("abpcpeleawcuh", ["apple", "banana", "peach", "kiwi"]));
