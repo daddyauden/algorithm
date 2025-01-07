@@ -167,3 +167,40 @@ function findLongWord(input, target) {
 }
 
 console.info(findLongWord("abpcpeleawcuh", ["apple", "banana", "peach", "kiwi"]));
+
+function decimalTransfer(input, radix) {
+    let res = [];
+
+    let hex = 0;
+
+    while (input > 1) {
+        hex = input % radix;
+        input = Math.floor(input / radix);
+        res.push(hex);
+
+        if (input == 1) {
+            res.push(input);
+        }
+    }
+
+    return res.reverse().join("");
+}
+
+function transferDecimal(input, radix) {
+    input = input.split("");
+
+    let sum = 0, hex = "0123456789abcdef";
+
+    for (let i = 0, j = input.length - 1; j >= 0; j--, i++) {
+        let index = hex.indexOf(input[i].toLowerCase());
+        if (index > 0) {
+            sum += index * Math.pow(radix, j);
+        }
+    }
+
+    return sum;
+}
+
+console.info(decimalTransfer(20, 2) == "10100", transferDecimal("10100", 2) == 20);
+console.info(decimalTransfer(20, 8) == "24", transferDecimal("24", 8) == 20);
+console.info(decimalTransfer(20, 16) == "14", transferDecimal("14", 16) == 20);
