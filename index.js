@@ -244,3 +244,20 @@ console.info(findNumIn2DArray([
     [10, 13, 14, 17, 24],
     [18, 21, 23, 26, 30],
 ], 18) === true);
+
+function replaceStr(input, search, replace) {
+    let i = 0, str = "", searchLen = search.length;
+
+    while (i < input.length) {
+        if (input[i] == search[0] && input.substr(i, searchLen) == search) {
+            str += replace;
+            i += searchLen;
+        } else {
+            str += input[i++];
+        }
+    }
+
+    return str;
+}
+
+console.info(replaceStr("Today is Monday.", "da", "#"));
