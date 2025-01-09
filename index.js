@@ -204,3 +204,43 @@ function transferDecimal(input, radix) {
 console.info(decimalTransfer(20, 2) == "10100", transferDecimal("10100", 2) == 20);
 console.info(decimalTransfer(20, 8) == "24", transferDecimal("24", 8) == 20);
 console.info(decimalTransfer(20, 16) == "14", transferDecimal("14", 16) == 20);
+
+function findRepeatNum(input) {
+    let i = 0, len = input.length, res = [];
+
+    while (i < len) {
+        if (!res.includes(input[i])) {
+            res.push(input[i++]);
+        } else {
+            return input[i];
+        }
+    }
+}
+
+console.info(findRepeatNum([2, 5, 1, 3, 8, 2]) == 2);
+
+function findNumIn2DArray(input, target) {
+    let i = 0, j = input[0].length - 1;
+
+    while (i < input.length && j >= 0) {
+        let item = input[i][j];
+
+        if (item == target) {
+            return true;
+        } else if (item < target) {
+            ++i;
+        } else {
+            --j;
+        }
+    }
+
+    return false;
+}
+
+console.info(findNumIn2DArray([
+    [1, 4, 7, 11, 15],
+    [2, 5, 8, 12, 19],
+    [3, 6, 9, 16, 22],
+    [10, 13, 14, 17, 24],
+    [18, 21, 23, 26, 30],
+], 18) === true);
